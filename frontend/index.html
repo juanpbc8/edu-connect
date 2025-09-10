@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduConnect — Hub académico</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="script" href="./js/index.js">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">EduConnect</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item me-2"><a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+              data-bs-target="#uploadModal">Subir recurso</a></li>
+          <li class="nav-item"><a class="btn btn-primary btn-sm" href="#tutors">Tutorías</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h1 class="display-6 fw-bold">Encuentra y organiza recursos de tu universidad</h1>
+          <p class="lead text-muted">PDFs, guías, exámenes pasados y comunidades por curso. Compartido por estudiantes y
+            validado por la comunidad.</p>
+
+          <form id="searchForm" class="row g-2">
+            <div class="col-12 col-sm-8">
+              <input id="searchInput" type="search" class="form-control"
+                placeholder="Buscar materia, curso o palabra clave...">
+            </div>
+            <div class="col-12 col-sm-4 d-grid">
+              <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i> Buscar</button>
+            </div>
+          </form>
+
+          <div class="mt-3 small text-muted">Resultados basados en recursos subidos por la comunidad — ¡vota por lo más
+            útil!</div>
+        </div>
+
+        <div class="col-lg-5 d-none d-lg-block">
+          <img
+            src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=..."
+            class="img-fluid rounded" alt="estudiando">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="py-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- LEFT: Resources + Filters -->
+        <div class="col-lg-8">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Biblioteca</h4>
+            <div class="small text-muted"><span id="resultCount">4</span> resultados</div>
+          </div>
+
+          <div class="row g-3" id="resourceList">
+            <!-- Ejemplo de tarjeta de recurso (se puede clonar con JS) -->
+            <div class="col-md-6">
+              <div class="card shadow-sm card-resource">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h6 class="card-title mb-1">Cálculo I - Exámenes Pasados</h6>
+                      <div class="small text-muted">Ciclo 1 • Profesor: Gonzales</div>
+                    </div>
+                    <div class="text-end">
+                      <span class="badge bg-primary">PDF</span>
+                    </div>
+                  </div>
+
+                  <p class="mt-3 mb-2 text-truncate">Colección de exámenes resueltos de años anteriores — ideal para
+                    practicar.</p>
+
+                  <div class="mt-auto d-flex justify-content-between align-items-center">
+                    <div>
+                      <button class="btn btn-sm btn-outline-secondary btn-save"><i class="bi bi-folder-plus"></i>
+                        Guardar</button>
+                    </div>
+                    <div class="text-muted small">123 descargas • <i class="bi bi-hand-thumbs-up"></i> 45</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card shadow-sm card-resource">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h6 class="card-title mb-1">Resumen - Programación</h6>
+                      <div class="small text-muted">Ciclo 2 • Alumno: María</div>
+                    </div>
+                    <div class="text-end">
+                      <span class="badge bg-success">Guía</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-2 text-truncate">Resumen en una página con los temas más importantes.</p>
+                  <div class="mt-auto d-flex justify-content-between align-items-center">
+                    <div>
+                      <button class="btn btn-sm btn-outline-secondary btn-save"><i class="bi bi-folder-plus"></i>
+                        Guardar</button>
+                    </div>
+                    <div class="text-muted small">54 descargas • <i class="bi bi-hand-thumbs-up"></i> 20</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recursos de ejemplo adicionales -->
+            <div class="col-md-6">
+              <div class="card shadow-sm card-resource">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h6 class="card-title mb-1">Diapositivas - Física</h6>
+                      <div class="small text-muted">Ciclo 1 • Profesor: Ramos</div>
+                    </div>
+                    <div class="text-end">
+                      <span class="badge bg-warning">Slides</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-2 text-truncate">Presentación con ejemplos y ejercicios resueltos.</p>
+                  <div class="mt-auto d-flex justify-content-between align-items-center">
+                    <div>
+                      <button class="btn btn-sm btn-outline-secondary btn-save"><i class="bi bi-folder-plus"></i>
+                        Guardar</button>
+                    </div>
+                    <div class="text-muted small">78 descargas • <i class="bi bi-hand-thumbs-up"></i> 30</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card shadow-sm card-resource">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <h6 class="card-title mb-1">Guía de laboratorio - Química</h6>
+                      <div class="small text-muted">Ciclo 3 • Autor: José</div>
+                    </div>
+                    <div class="text-end">
+                      <span class="badge bg-info">Guía</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-2 text-truncate">Pasos experimentales y hojas de resultados listos para imprimir.
+                  </p>
+                  <div class="mt-auto d-flex justify-content-between align-items-center">
+                    <div>
+                      <button class="btn btn-sm btn-outline-secondary btn-save"><i class="bi bi-folder-plus"></i>
+                        Guardar</button>
+                    </div>
+                    <div class="text-muted small">32 descargas • <i class="bi bi-hand-thumbs-up"></i> 12</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pagination -->
+          <nav class="mt-4" aria-label="paginacion">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled"><a class="page-link">Anterior</a></li>
+              <li class="page-item active"><a class="page-link">1</a></li>
+              <li class="page-item"><a class="page-link">2</a></li>
+              <li class="page-item"><a class="page-link">Siguiente</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- RIGHT: Sidebar (community + organizer) -->
+        <aside class="col-lg-4">
+          <div class="sticky-search">
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <h6 class="card-title">Filtros</h6>
+                <form id="filterForm">
+                  <div class="mb-2">
+                    <label class="form-label small">Universidad</label>
+                    <select class="form-select form-select-sm" id="filterUni">
+                      <option value="">Todas</option>
+                      <option>UTP</option>
+                      <option>UNMSM</option>
+                      <option>UPC</option>
+                    </select>
+                  </div>
+                  <div class="mb-2">
+                    <label class="form-label small">Tipo</label>
+                    <select class="form-select form-select-sm" id="filterType">
+                      <option value="">Todos</option>
+                      <option>PDF</option>
+                      <option>Guía</option>
+                      <option>Slides</option>
+                    </select>
+                  </div>
+                  <div class="d-grid">
+                    <button class="btn btn-outline-primary btn-sm" type="button" id="applyFilters">Aplicar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <h6 class="card-title">Comunidad (Foro rápido)</h6>
+                <div class="small text-muted">Últimos temas</div>
+                <ul class="list-unstyled mt-3">
+                  <li class="mb-2"><a href="#forum" class="text-decoration-none">¿Alguien tiene el parcial de
+                      Estadística?</a></li>
+                  <li class="mb-2"><a href="#forum" class="text-decoration-none">Respuestas guía de Programación</a>
+                  </li>
+                  <li class="mb-2"><a href="#forum" class="text-decoration-none">Recomendaciones para estudiar
+                      Física</a></li>
+                </ul>
+                <a href="#forum" class="btn btn-sm btn-outline-secondary">Ir al foro</a>
+              </div>
+            </div>
+
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="card-title">Mi organizador</h6>
+                <p class="small text-muted">Carpetas guardadas</p>
+                <ul class="list-group list-group-flush small mb-3">
+                  <li class="list-group-item">Cálculo I <span class="badge bg-secondary float-end">12</span></li>
+                  <li class="list-group-item">Programación <span class="badge bg-secondary float-end">5</span></li>
+                </ul>
+                <a href="#organizer" class="btn btn-sm btn-primary">Ver organizador</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- TUTORS SECTION -->
+      <section class="mt-5" id="tutors">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">Encuentra un tutor</h5>
+              <a href="#tutors" class="small">Ver todos</a>
+            </div>
+
+            <div class="row mt-3 g-3">
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body text-center">
+                    <div class="mb-2"><i class="bi bi-person-circle fs-1"></i></div>
+                    <h6 class="card-title">Carlos P.</h6>
+                    <div class="small text-muted">Matemáticas • Tutor senior</div>
+                    <div class="mt-3 d-grid"><button class="btn btn-outline-primary btn-sm">Contactar</button></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body text-center">
+                    <div class="mb-2"><i class="bi bi-person-circle fs-1"></i></div>
+                    <h6 class="card-title">María L.</h6>
+                    <div class="small text-muted">Programación • Egresada</div>
+                    <div class="mt-3 d-grid"><button class="btn btn-outline-primary btn-sm">Contactar</button></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body text-center">
+                    <div class="mb-2"><i class="bi bi-person-circle fs-1"></i></div>
+                    <h6 class="card-title">Jorge V.</h6>
+                    <div class="small text-muted">Física • Estudiante avanzado</div>
+                    <div class="mt-3 d-grid"><button class="btn btn-outline-primary btn-sm">Contactar</button></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORUM SECTION -->
+      <section class="mt-4" id="forum">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5>Foro comunitario</h5>
+            <p class="small text-muted">Plantea preguntas y recibe respuestas de otros estudiantes.</p>
+            <form class="row g-2">
+              <div class="col-md-8">
+                <input class="form-control form-control-sm" placeholder="Título del tema...">
+              </div>
+              <div class="col-md-4 d-grid">
+                <button class="btn btn-primary btn-sm">Publicar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-top py-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="small text-muted">© 2025 EduConnect</div>
+      <div>
+        <a class="text-muted me-3 small" href="#">Privacidad</a>
+        <a class="text-muted small" href="#">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- UPLOAD MODAL -->
+  <div class="modal fade" id="uploadModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Subir recurso</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="uploadForm">
+            <div class="mb-2">
+              <label class="form-label small">Título</label>
+              <input class="form-control form-control-sm" required id="rTitle">
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Tipo</label>
+              <select class="form-select form-select-sm" id="rType">
+                <option>PDF</option>
+                <option>Guía</option>
+                <option>Slides</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Descripción</label>
+              <textarea class="form-control form-control-sm" id="rDesc"></textarea>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Archivo (simulado)</label>
+              <input type="file" class="form-control form-control-sm">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary btn-sm" id="submitUpload">Subir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+html,
+body {
+    height: 100%;
+}
+
+.hero {
+    background: linear-gradient(90deg, #0d6efd22, #6f42c122);
+}
+
+.card-resource {
+    min-height: 160px;
+}
+
+.tag {
+    font-size: .75rem;
+}
+
+.sticky-search {
+    position: sticky;
+    top: 1rem;
+}
